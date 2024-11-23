@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Story View - ConceptLearn</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        /* Flashcard Container */
+        .flashcard-container {
+            width: 500px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #0077b6;
+            border-radius: 5px;
+            animation: progress 30s linear forwards;
+        }
+
+        @keyframes progress {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        /* Flashcard Content */
+        .flashcard-content {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: #e0f7fa;
+            font-size: 1.3em;
+            overflow: hidden;
+        }
+
+        .flashcard-content img,
+        .flashcard-content video {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-buttons span {
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        /* Activity Header */
+        .activity-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .activity-button {
+            padding: 10px 20px;
+            background-color: #00e5ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .activity-button:hover {
+            background-color: #00b8d4;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 20px;
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>ConceptLearn</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Modules</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Flashcard Container -->
+
+    <div class="flashcard-container">
+        <div class="activity-header">Flashcards</div>
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+
+        <!-- Flashcard Content -->
+        <div id="flashcard-content" class="flashcard-content"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <span id="prev-btn" onclick="prevFlashcard()">&#10094;</span>
+            <span id="next-btn" onclick="nextFlashcard()">&#10095;</span>
+        </div>
+
+        <!-- Activity Button -->
+        <button class="activity-button" onclick="startActivity('activityview.html')">Start Activity</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ConceptLearn. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </p>
+    </footer>
+
+    <script>
+        // Flashcards Data with Different Content Types
+        const flashcards = [
+            { type: 'text', content: "To find the output of a function, substitute the given value of x into the function and calculate. For example, if f(x) = x^2 and x = 3, substitute 3 for x and compute 3^2 = 9." },
+            { type: 'text', content: "To solve for x in a function like g(x) = 2x + 5, set g(x) equal to the given value, and rearrange the equation to isolate x. For example, if g(x) = 15, solve 15 = 2x + 5 by subtracting 5 and dividing by 2." },
+            { type: 'image', content: "formula.png" },
+            { type: 'text', content: "The range of a function is the set of possible output values. To find the range for a given interval, evaluate the function at the endpoints of the interval. For example, if f(x) = x + 2 and x ∈ [0, 5], compute f(0) = 2 and f(5) = 7. The range is [2, 7]." },
+            { type: 'text', content: "To evaluate a function like h(x) = 3x - 4, substitute the given x value into the function and calculate. For example, if x = 2, compute h(2) = 3(2) - 4 = 2." },
+            { type: 'video', content: "learning function.mp4" },
+            { type: 'text', content: "The domain of a function is the set of all possible input values (x) for which the function is defined. For rational functions, the denominator must not be zero. For example, for f(x) = 1 / (x - 3), solve x - 3 ≠ 0 to find x ≠ 3. The domain is all real numbers except x = 3." }
+        ];
+
+        let currentIndex = 0;
+        let countdownInterval;
+        let autoSwitchInterval;
+        const flashcardContent = document.getElementById("flashcard-content");
+        const progress = document.getElementById("progress");
+
+        // Display Current Flashcard
+        function displayFlashcard(index) {
+            const flashcard = flashcards[index];
+            flashcardContent.innerHTML = '';
+
+            if (flashcard.type === 'text') {
+                flashcardContent.textContent = flashcard.content;
+            } else if (flashcard.type === 'image') {
+                const img = document.createElement('img');
+                img.src = flashcard.content;
+                img.alt = "Flashcard Image";
+                flashcardContent.appendChild(img);
+            } else if (flashcard.type === 'video') {
+                const video = document.createElement('video');
+                video.src = flashcard.content;
+                video.type = 'video/mp4';
+                video.controls = true;
+                video.autoplay = true;
+                video.loop = true;
+                flashcardContent.appendChild(video);
+            }
+        }
+
+
+        // Auto-Switch Flashcards
+        function autoSwitch() {
+            autoSwitchInterval = setInterval(() => {
+                nextFlashcard();
+            }, 30000);
+        }
+
+        // Start Timer with Progress Animation
+        function startTimer() {
+            progress.style.animation = 'progress 30s linear forwards';
+            countdownInterval = setTimeout(nextFlashcard, 30000);
+        }
+
+        // Reset Timer
+        function resetTimer() {
+            clearTimeout(countdownInterval);
+            clearInterval(autoSwitchInterval);
+            progress.style.animation = 'none';
+            void progress.offsetWidth; // Trigger reflow for animation restart
+            startTimer();
+            autoSwitch();
+        }
+
+        // Navigation Functions
+        function prevFlashcard() {
+            resetTimer();
+            currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+            displayFlashcard(currentIndex);
+        }
+
+        function nextFlashcard() {
+            resetTimer();
+            currentIndex = (currentIndex + 1) % flashcards.length;
+            displayFlashcard(currentIndex);
+        }
+
+        // Start Activity Button
+        function startActivity(url) {
+            window.location.href = url;
+        }
+
+        // Initialize Flashcards and Timer
+        displayFlashcard(currentIndex);
+        startTimer();
+        autoSwitch();
+    </script>
+</body>
+</html>

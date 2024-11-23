@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Activity - ConceptLearn</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #00b4d8;
+        }
+        /* Include the CSS styles for the button here */
+        /* End Activity Button */
+        .end-activity-button {
+            padding: 10px 20px; /* Padding for the button */
+            background-color: #ff4d4d; /* Red background color */
+            color: #fff; /* White text color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 1em; /* Font size */
+            transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transitions */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+
+        /* Hover State */
+        .end-activity-button:hover {
+            background-color: #ff1a1a; /* Darker red on hover */
+        }
+
+        /* Active State */
+        .end-activity-button:active {
+            transform: scale(0.95); /* Slightly shrink the button on click */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+        }
+
+        /* Focus State (for accessibility) */
+        .end-activity-button:focus {
+            outline: none; /* Remove default outline */
+            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.5); /* Custom focus outline */
+        }
+        
+        /* Activity Container */
+        .activity-container {
+            width: 500px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Activity Header */
+        .activity-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Flashcard Content */
+        .flashcard-content {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #0077b6;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            background-color: #e0f7fa;
+        }
+
+        /* Input Section */
+        .input-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .user-input {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #00e5ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #00b8d4;
+        }
+
+        /* Feedback and Timer */
+        .feedback {
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        .feedback.correct {
+            color: green;
+        }
+
+        .feedback.incorrect {
+            color: red;
+        }
+
+        .timer {
+            font-size: 1.2em;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-buttons span {
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        .nav-buttons span:hover {
+            color: #0077b6;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>ConceptLearn</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Modules</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Activity Container -->
+    <div class="activity-container">
+        <div class="activity-header">Flashcards Activity</div>
+
+        <div id="flashcard-content" class="flashcard-content">
+            What is 2 + 2?
+        </div>
+
+        <div class="input-section">
+            <input id="user-input" class="user-input" type="text" placeholder="Your answer">
+            <button class="submit-button" onclick="submitAnswer()">Send</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+        <div id="timer" class="timer">Time Left: 30s</div>
+
+        <div class="controls">
+            <span id="prev-btn" onclick="prevFlashcard()">&#60;</span>
+            <span id="next-btn" onclick="nextFlashcard()">&#62;</span>
+        </div>
+
+        <button class="end-activity-button" onclick="endActivity('dashboardview.html')">End Activity</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ConceptLearn. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Flashcards Data
+        const flashcards = [
+            { question: "What is the output of the function f(x) = x^2 when x = 3?", answer: "9", hint: "Substitute x = 3 into the function f(x) = x^2 and compute 3 squared." },
+            { question: "If g(x) = 2x + 5, what is the value of x when g(x) = 15?", answer: "5", hint: "Set g(x) = 15, solve 15 = 2x + 5, and isolate x." },
+            { question: "What is the range of the function f(x) = x + 2 for x ∈ [0, 5]?", answer: "[2, 7]", hint: "Add 2 to the minimum and maximum values of x in the given interval." },
+            { question: "If h(x) = 3x - 4, what is the value of h(2)?", answer: "2", hint: "Substitute x = 2 into the function h(x) = 3x - 4 and calculate the result." },
+            { question: "What is the domain of the function f(x) = 1 / (x - 3)?", answer: "All real numbers except x = 3", hint: "The denominator of a fraction cannot be zero. Solve x - 3 ≠ 0 to find the restriction." }
+        ];
+
+        let currentIndex = 0;
+        let timeLeft = 30;
+        let countdownInterval;
+
+        // Display Flashcard
+        function displayFlashcard(index) {
+            document.getElementById("flashcard-content").textContent = flashcards[index].question;
+            document.getElementById("user-input").value = "";
+            document.getElementById("feedback").textContent = "";
+        }
+
+        // Timer Function
+        function startTimer() {
+            const timerDisplay = document.getElementById("timer");
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+                if (timeLeft === 0) nextFlashcard();
+            }, 1000);
+        }
+
+        // Reset Timer
+        function resetTimer() {
+            clearInterval(countdownInterval);
+            timeLeft = 30;
+            startTimer();
+        }
+
+        // Submit Answer
+        function submitAnswer() {
+            const userInput = document.getElementById("user-input").value.trim();
+            const correctAnswer = flashcards[currentIndex].answer;
+            const feedback = document.getElementById("feedback");
+            feedback.textContent = userInput.toLowerCase() === correctAnswer.toLowerCase()
+                ? "Correct! Well done!" : `Incorrect. Hint: ${flashcards[currentIndex].hint}`;
+        }
+
+        // Navigation
+        function prevFlashcard() { resetTimer(); currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length; displayFlashcard(currentIndex); }
+        function nextFlashcard() { resetTimer(); currentIndex = (currentIndex + 1) % flashcards.length; displayFlashcard(currentIndex); }
+
+        // End Activity
+        function endActivity(url) { clearInterval(countdownInterval); window.location.href = url; }
+
+        // Initialize
+        displayFlashcard(currentIndex);
+        startTimer();
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup - ConceptLearn</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 400px;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #0077b6;
+        }
+
+        /* Input Fields */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        /* Button Styles */
+        .form-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .form-button:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Toggle Link */
+        .toggle-link {
+            margin-top: 10px;
+            display: block;
+            color: #0077b6;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 20px;
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>ConceptLearn</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Modules</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Login Form -->
+    <div id="login-form" class="form-container">
+        <h2>Login</h2>
+        <input type="email" id="login-email" class="input-field" placeholder="Email" required>
+        <input type="password" id="login-password" class="input-field" placeholder="Password" required>
+        <button onclick="login()" class="form-button">Login</button>
+        <a class="toggle-link" onclick="showSignupForm()">Don't have an account? Sign up</a>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form" class="form-container" style="display: none;">
+        <h2>Signup</h2>
+        <input type="text" id="signup-username" class="input-field" placeholder="Username" required>
+        <input type="email" id="signup-email" class="input-field" placeholder="Email" required>
+        <input type="password" id="signup-password" class="input-field" placeholder="Password" required>
+        <button onclick="signup()" class="form-button">Sign Up</button>
+        <a class="toggle-link" onclick="showLoginForm()">Already have an account? Login</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ConceptLearn. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Contact Us</a>
+        </p>
+    </footer>
+
+    <script>
+        // Function to Show Signup Form
+        function showSignupForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+        }
+
+        // Function to Show Login Form
+        function showLoginForm() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+
+        // Dummy Login Function
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (email && password) {
+                alert(`Logged in as ${email}`);
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+
+        // Dummy Signup Function
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (username && email && password) {
+                alert(`Account created for ${username}`);
+                showLoginForm();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>

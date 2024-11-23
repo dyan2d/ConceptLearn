@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Modules - ConceptLearn</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Modules Container */
+        .modules-container {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .modules-container h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            color: #0077b6;
+        }
+
+        /* Module Item */
+        .module-item {
+            border: 2px solid #0077b6;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fff;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            color: #0077b6;
+        }
+
+        .flashcards {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .explore-button {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            background-color: #00e5ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .explore-button:hover {
+            background-color: #00b8d4;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>ConceptLearn</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#modules">Modules</a>
+            <a href="#contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Modules Container -->
+    <div class="modules-container" id="modules">
+        <h2>Calculus Modules</h2>
+
+        <!-- Module 1: Functions -->
+        <div class="module-item" onclick="toggleFlashcards('flashcards-functions')">
+            <div class="module-title">
+                <span>Functions</span>
+                <span>➔</span>
+            </div>
+            <div id="flashcards-functions" class="flashcards">
+                <a href="flashcardview.html" class="explore-button">Explore Flashcards</a>
+            </div>
+        </div>
+
+        <!-- Module 2: Derivatives -->
+        <div class="module-item" onclick="toggleFlashcards('flashcards-derivatives')">
+            <div class="module-title">
+                <span>Derivatives</span>
+                <span>➔</span>
+            </div>
+            <div id="flashcards-derivatives" class="flashcards">
+                <a href="flashcardview.html" class="explore-button">Explore Flashcards</a>
+            </div>
+        </div>
+
+        <!-- Module 3: Differentiation -->
+        <div class="module-item" onclick="toggleFlashcards('flashcards-differentiation')">
+            <div class="module-title">
+                <span>Differentiation</span>
+                <span>➔</span>
+            </div>
+            <div id="flashcards-differentiation" class="flashcards">
+                <a href="flashcardview.html" class="explore-button">Explore Flashcards</a>
+            </div>
+        </div>
+
+        <!-- Module 4: Trigonometry -->
+        <div class="module-item" onclick="toggleFlashcards('flashcards-trigonometry')">
+            <div class="module-title">
+                <span>Trigonometry</span>
+                <span>➔</span>
+            </div>
+            <div id="flashcards-trigonometry" class="flashcards">
+                <a href="flashcardview.html" class="explore-button">Explore Flashcards</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ConceptLearn. All rights reserved.</p>
+        <p><a href="contact.html">Contact Us</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Function to Toggle Flashcards View
+        function toggleFlashcards(id) {
+            const flashcards = document.getElementById(id);
+            flashcards.style.display = flashcards.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>

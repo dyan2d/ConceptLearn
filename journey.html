@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - ConceptLearn</title>
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Introduction Section */
+        .intro {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .intro h1 {
+            font-size: 2.5em;
+            color: #0077b6;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        /* Course Modules Section */
+        .course-modules {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .module-card {
+            padding: 20px;
+            background-color: #e0f7fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-card h3 {
+            font-size: 1.8em;
+            color: #0077b6;
+        }
+
+        .module-card p {
+            font-size: 1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Explore Button */
+        .explore-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 1em;
+        }
+
+        .explore-button:hover {
+            background-color: #0096c7;
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #00b4d8;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00b4d8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>ConceptLearn</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="modules.html">Modules</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Introduction Section -->
+    <div class="intro">
+        <h1>Explore ConceptLearn</h1>
+        <p>Discover a world of interactive learning with our comprehensive subject modules. Choose a topic and dive into engaging content designed to help you master complex topics with ease!</p>
+    </div>
+
+    <!-- Course Modules Section -->
+    <div class="course-modules">
+        <!-- Mathematics Card with Explore Button -->
+        <div class="module-card">
+            <h3>Mathematics</h3>
+            <p>Explore topics like Calculus, Algebra, Trigonometry, and Statistics with interactive tools and quizzes.</p>
+            <a href="modulesView.html" class="explore-button">Explore Mathematics</a>
+        </div>
+
+        <!-- English Card with Explore Button -->
+        <div class="module-card">
+            <h3>English</h3>
+            <p>Enhance your skills with topics like Nouns, Verbs, Adjectives, and Adverbs.</p>
+            <a href="Views/english.html" class="explore-button">Explore English</a>
+        </div>
+
+        <!-- Science Card with Explore Button -->
+        <div class="module-card">
+            <h3>Science</h3>
+            <p>Learn about topics like Atoms, Molecules, the Periodic Table, and Biology.</p>
+            <a href="Views/science.html" class="explore-button">Explore Science</a>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑ Top</button>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ConceptLearn. All rights reserved. | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Scroll to Top Function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show Scroll to Top Button
+        window.onscroll = function() {
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            scrollToTopBtn.style.display = window.scrollY > 200 ? 'block' : 'none';
+        };
+    </script>
+</body>
+</html>
